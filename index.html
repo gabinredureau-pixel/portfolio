@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabin Redureau – Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red:   #e63329;
+      --dark:  #111111;
+      --light: #f7f5f0;
+      --mid:   #e8e4dc;
+      --text:  #222222;
+      --muted: #666666;
+      --nav-h: 56px;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Défilement doux natif + compensation nav collante */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-h);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ────────────────────────────────
+       NAV
+    ──────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: var(--dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 3rem;
+      height: var(--nav-h);
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      line-height: 1;          /* empêche l'écrasement */
+      white-space: nowrap;
+      color: #fff;
+      letter-spacing: .06em;
+    }
+    .logo span { color: var(--red); }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: .88rem;
+      line-height: 1;
+      white-space: nowrap;
+      transition: color .25s;
+    }
+    nav a:hover { color: var(--red); }
+
+    /* ────────────────────────────────
+       UTILITAIRE : section pleine page
+    ──────────────────────────────── */
+    .page-section {
+      min-height: 100vh;
+      padding: calc(var(--nav-h) + 3rem) 4rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Contenu centré avec largeur max */
+    .inner {
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* ────────────────────────────────
+       HERO
+    ──────────────────────────────── */
+    #hero {
+      background: var(--dark);
+      color: #fff;
+      text-align: center;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid var(--red);
+      object-fit: cover;
+      margin-bottom: 1.8rem;
+      background: linear-gradient(135deg, #2a2a2a, #444);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.2rem;
+      /* Pour les <img> aussi */
+      flex-shrink: 0;
+    }
+
+    #hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.15;       /* corrige l'écrasement */
+      letter-spacing: .02em;
+      white-space: nowrap;
+    }
+    #hero h1 span { color: var(--red); }
+
+    .hero-sub {
+      margin-top: .7rem;
+      color: #aaa;
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+
+    .hero-info {
+      margin-top: 1.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .7rem 1.2rem;
+      font-size: .92rem;
+      color: #bbb;
+      line-height: 1.5;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 2.4rem;
+      padding: .85rem 2.4rem;
+      background: var(--red);
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .92rem;
+      letter-spacing: .06em;
+      line-height: 1;
+      transition: background .25s, transform .2s;
+    }
+    .btn:hover { background: #c0271e; transform: translateY(-3px); }
+
+    /* ────────────────────────────────
+       TITRES DE SECTIONS
+    ──────────────────────────────── */
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      line-height: 1.2;        /* corrige l'écrasement */
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--red);
+      border-bottom: 2px solid var(--mid);
+      padding-bottom: .6rem;
+      margin-bottom: 2.2rem;
+    }
+
+    /* Titre blanc (sur fond sombre) */
+    .section-title--light {
+      border-bottom-color: #333;
+    }
+
+    /* ────────────────────────────────
+       TIMELINE (expériences / formations)
+    ──────────────────────────────── */
+    .timeline { display: flex; flex-direction: column; gap: 1.8rem; }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: .4rem 1.4rem;
+    }
+
+    .timeline-year {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      color: var(--red);
+      font-size: .84rem;
+      line-height: 1.4;
+      padding-top: .2rem;
+    }
+
+    .timeline-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .timeline-body .lieu {
+      font-size: .85rem;
+      color: var(--muted);
+      margin-top: .2rem;
+      line-height: 1.4;
+    }
+
+    .timeline-body p {
+      font-size: .9rem;
+      color: #444;
+      margin-top: .45rem;
+      line-height: 1.55;
+    }
+
+    /* ────────────────────────────────
+       POINTS FORTS
+    ──────────────────────────────── */
+    #points-forts { background: var(--dark); }
+
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .strength-card {
+      background: #1c1c1c;
+      border: 1px solid #2e2e2e;
+      border-top: 3px solid var(--red);
+      border-radius: 6px;
+      padding: 1.8rem 1.4rem;
+      text-align: center;
+      transition: transform .2s, border-color .2s;
+    }
+    .strength-card:hover { transform: translateY(-4px); border-color: var(--red); }
+
+    .strength-icon {
+      font-size: 2.2rem;
+      margin-bottom: .8rem;
+    }
+
+    .strength-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 1.3;
+      color: #fff;
+    }
+
+    .strength-card p {
+      font-size: .85rem;
+      color: #999;
+      margin-top: .5rem;
+      line-height: 1.5;
+    }
+
+    /* ────────────────────────────────
+       COMPÉTENCES
+    ──────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: .75rem;
+    }
+
+    .skill-tag {
+      background: var(--mid);
+      border-left: 3px solid var(--red);
+      padding: .55rem .9rem;
+      font-size: .88rem;
+      border-radius: 3px;
+      line-height: 1.3;
+    }
+
+    /* Sous-titres dans une section */
+    .sub-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--red);
+      margin: 2.5rem 0 1.2rem;
+    }
+
+    /* ────────────────────────────────
+       LANGUES
+    ──────────────────────────────── */
+    .lang-list { display: flex; flex-direction: column; gap: .8rem; }
+
+    .lang-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: .9rem;
+    }
+
+    .lang-name { min-width: 90px; }
+
+    .lang-bar {
+      flex: 1;
+      height: 7px;
+      background: var(--mid);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .lang-fill { height: 100%; background: var(--red); border-radius: 4px; }
+
+    .lang-label { color: var(--muted); font-size: .82rem; min-width: 110px; text-align: right; }
+
+    /* ────────────────────────────────
+       INTÉRÊTS
+    ──────────────────────────────── */
+    .interests {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+    }
+
+    .interest-pill {
+      background: var(--dark);
+      color: #fff;
+      padding: .45rem 1.1rem;
+      border-radius: 999px;
+      font-size: .85rem;
+      line-height: 1.4;
+    }
+
+    /* ────────────────────────────────
+       DIPLÔMES
+    ──────────────────────────────── */
+    .diplomes { display: flex; flex-direction: column; gap: .7rem; }
+
+    .diplome-item {
+      display: flex;
+      gap: .9rem;
+      align-items: flex-start;
+      font-size: .9rem;
+      line-height: 1.4;
+    }
+
+    .diplome-item .year {
+      min-width: 44px;
+      font-weight: 700;
+      color: var(--red);
+      font-family: 'Syne', sans-serif;
+      font-size: .82rem;
+      padding-top: .1rem;
+    }
+
+    /* ────────────────────────────────
+       CONTACT
+    ──────────────────────────────── */
+    #contact { background: var(--dark); color: #fff; }
+
+    .contact-desc {
+      color: #aaa;
+      margin-bottom: 2rem;
+      font-size: .95rem;
+      line-height: 1.65;
+    }
+
+    .form-group { margin-bottom: 1.2rem; }
+
+    label {
+      display: block;
+      font-size: .78rem;
+      color: #aaa;
+      margin-bottom: .4rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    input, textarea {
+      width: 100%;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 4px;
+      color: #fff;
+      padding: .8rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .25s;
+    }
+    input:focus, textarea:focus { border-color: var(--red); }
+
+    textarea { resize: vertical; min-height: 120px; }
+
+    #sendBtn {
+      width: 100%;
+      padding: .95rem;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .06em;
+      cursor: pointer;
+      transition: background .25s, transform .2s;
+    }
+    #sendBtn:hover { background: #c0271e; transform: translateY(-3px); }
+
+    #formMsg {
+      margin-top: 1rem;
+      font-size: .9rem;
+      text-align: center;
+      min-height: 1.2rem;
+      line-height: 1.4;
+    }
+
+    /* ────────────────────────────────
+       FOOTER
+    ──────────────────────────────── */
+    footer {
+      background: #080808;
+      text-align: center;
+      color: #444;
+      font-size: .82rem;
+      padding: 1.4rem;
+      line-height: 1.5;
+    }
+
+    /* ────────────────────────────────
+       RESPONSIVE (mobile)
+    ──────────────────────────────── */
+    @media (max-width: 640px) {
+      nav { padding: 0 1.2rem; }
+      nav ul { gap: 1rem; }
+      .page-section { padding: calc(var(--nav-h) + 2rem) 1.5rem 3rem; }
+      .timeline-item { grid-template-columns: 1fr; gap: .2rem; }
+      #hero h1 { font-size: 2rem; white-space: normal; }
+      .logo { font-size: .92rem; }
+      nav a { font-size: .78rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════
+     NAV
+════════════════════════════ -->
+<nav>
+  <div class="logo">G<span>.</span>REDUREAU</div>
+  <ul>
+    <li><a href="#hero">Accueil</a></li>
+    <li><a href="#experience">Expériences</a></li>
+    <li><a href="#formation">Formation</a></li>
+    <li><a href="#points-forts">Points forts</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ════════════════════════════
+     HERO  (pleine page)
+════════════════════════════ -->
+<section id="hero" class="page-section">
+  <div class="inner" style="display:flex;flex-direction:column;align-items:center;">
+
+    <div class="avatar">👤</div>
+    <!--
+      Pour ajouter ta photo, remplace la ligne ci-dessus par :
+      <img class="avatar" src="photo.jpg" alt="Gabin Redureau" />
+    -->
+
+    <h1>Gabin <span>Redureau</span></h1>
+    <p class="hero-sub">Étudiant en BUT Informatique – IUT de Nantes</p>
+
+    <div class="hero-info">
+      <span>📍 60 La Grèserie, 44150 Ancenis</span>
+      <span>📞 07 49 56 27 26</span>
+      <span>✉️ gabinredureau@gmail.com</span>
+      <span>🎂 21 / 02 / 2007</span>
+    </div>
+
+    <a href="#contact" class="btn">Me contacter</a>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     EXPÉRIENCES  (pleine page)
+════════════════════════════ -->
+<section id="experience" class="page-section">
+  <div class="inner">
+    <h2 class="section-title">Expériences professionnelles</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-body">
+          <h3>Stage – Arrondel, Cabinet Géomètres</h3>
+          <div class="lieu">Découverte du métier de Géomètre Topographe</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2021</div>
+        <div class="timeline-body">
+          <h3>Stage – Manitou, Découverte des Métiers</h3>
+          <p>Technicien électronique embarqué · Dessinateur projeteur · Technicien Automaticien · Technicien programmeur Robots</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2019 – 2020</div>
+        <div class="timeline-body">
+          <h3>Associations – FabLab &amp; L'outil en main</h3>
+          <p>Programmeur · Imprimeur 3D · Mécanique · Maçonnerie · Plomberie · Cuisine Couture · Mosaïque · Marqueterie · Peinture · Électricité · Plâtrier · Menuiserie · Dessin</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     FORMATION  (pleine page)
+════════════════════════════ -->
+<section id="formation" class="page-section" style="background: var(--mid);">
+  <div class="inner">
+    <h2 class="section-title">Formations</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-year">2025 – 2026</div>
+        <div class="timeline-body">
+          <h3>IUT de Nantes</h3>
+          <div class="lieu">BUT Informatique</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2022 – 2025</div>
+        <div class="timeline-body">
+          <h3>Lycée Livet – Terminale STI2D</h3>
+          <div class="lieu">Option S.I.N (Système d'Information et Numérique) – Nantes</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2016 – 2021</div>
+        <div class="timeline-body">
+          <h3>Collège René Guy Cadou</h3>
+          <div class="lieu">Ancenis</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2010 – 2017</div>
+        <div class="timeline-body">
+          <h3>École Élémentaire Madame de Sévigné</h3>
+          <div class="lieu">Ancenis</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     POINTS FORTS  (pleine page)
+════════════════════════════ -->
+<section id="points-forts" class="page-section" style="background: var(--dark);">
+  <div class="inner">
+    <h2 class="section-title section-title--light">Points forts</h2>
+    <div class="strengths-grid">
+
+      <div class="strength-card">
+        <div class="strength-icon">🤝</div>
+        <h3>Travail d'équipe</h3>
+        <p>À l'aise pour collaborer, partager les tâches et avancer ensemble vers un objectif commun.</p>
+      </div>
+
+      <div class="strength-card">
+        <div class="strength-icon">🎯</div>
+        <h3>Autonomie</h3>
+        <p>Capable de m'organiser seul, de prendre des initiatives et de mener un projet de bout en bout.</p>
+      </div>
+
+      <div class="strength-card">
+        <div class="strength-icon">💬</div>
+        <h3>Bonne communication</h3>
+        <p>J'exprime clairement mes idées, je sais écouter et m'adapter à mon interlocuteur.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     COMPÉTENCES  (pleine page)
+════════════════════════════ -->
+<section id="competences" class="page-section">
+  <div class="inner">
+
+    <h2 class="section-title">Compétences</h2>
+    <div class="skills-grid">
+      <div class="skill-tag">Canva</div>
+      <div class="skill-tag">Scratch</div>
+      <div class="skill-tag">Sweet Home 3D</div>
+      <div class="skill-tag">Python</div>
+      <div class="skill-tag">Blender</div>
+      <div class="skill-tag">HTML / CSS</div>
+      <div class="skill-tag">Go</div>
+      <div class="skill-tag">SQL</div>
+      <div class="skill-tag">C</div>
+      <div class="skill-tag">Windows</div>
+      <div class="skill-tag">Linux</div>
+      <div class="skill-tag">Apple (macOS)</div>
+      <div class="skill-tag">Cybersécurité</div>
+    </div>
+
+    <!-- Langues -->
+    <p class="sub-title">Langues</p>
+    <div class="lang-list">
+      <div class="lang-item">
+        <span class="lang-name">Anglais</span>
+        <div class="lang-bar"><div class="lang-fill" style="width:70%"></div></div>
+        <span class="lang-label">Niveau usuel</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name">Espagnol</span>
+        <div class="lang-bar"><div class="lang-fill" style="width:30%"></div></div>
+        <span class="lang-label">Niveau débutant</span>
+      </div>
+    </div>
+
+    <!-- Centres d'intérêt -->
+    <p class="sub-title">Centres d'intérêt</p>
+    <div class="interests">
+      <span class="interest-pill">⛷️ Ski de piste &amp; ski nordique</span>
+      <span class="interest-pill">🛶 Canoë-Kayak</span>
+      <span class="interest-pill">🏀 Basket</span>
+      <span class="interest-pill">🎶 Flûte traversière</span>
+      <span class="interest-pill">🏹 Tir à l'arc</span>
+      <span class="interest-pill">🧗 Escalade</span>
+      <span class="interest-pill">✈️ Voyager</span>
+    </div>
+
+    <!-- Certificats & Diplômes -->
+    <p class="sub-title">Certificats &amp; Diplômes</p>
+    <div class="diplomes">
+      <div class="diplome-item"><span class="year">2025</span><span>Permis de conduire B</span></div>
+      <div class="diplome-item"><span class="year">2025</span><span>Certificat PIX score 374</span></div>
+      <div class="diplome-item"><span class="year">2021</span><span>Diplôme national du BREVET, mention bien</span></div>
+      <div class="diplome-item"><span class="year">2020</span><span>Castor informatique</span></div>
+      <div class="diplome-item"><span class="year">2020</span><span>Certificat de formation 1er secours junior</span></div>
+      <div class="diplome-item"><span class="year">2018</span><span>Assistant Sécurité ASSEC</span></div>
+      <div class="diplome-item"><span class="year">2015</span><span>Certificat Natation</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     CONTACT  (pleine page)
+════════════════════════════ -->
+<section id="contact" class="page-section">
+  <div class="inner" style="max-width:600px;">
+    <h2 class="section-title section-title--light">Me contacter</h2>
+    <p class="contact-desc">
+      Tu veux me contacter pour un stage, un projet ou juste discuter ?
+      Remplis le formulaire ci-dessous et je te répondrai dès que possible.
+    </p>
+
+    <div class="form-group">
+      <label>Ton nom</label>
+      <input type="text" id="nom" placeholder="Jean Dupont" />
+    </div>
+    <div class="form-group">
+      <label>Ton email</label>
+      <input type="email" id="email" placeholder="jean@exemple.com" />
+    </div>
+    <div class="form-group">
+      <label>Sujet</label>
+      <input type="text" id="sujet" placeholder="Proposition de stage..." />
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea id="message" placeholder="Bonjour Gabin..."></textarea>
+    </div>
+
+    <button id="sendBtn" onclick="envoyerMail()">Envoyer →</button>
+    <p id="formMsg"></p>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     FOOTER
+════════════════════════════ -->
+<footer>
+  © 2026 Gabin Redureau – Portfolio BUT Informatique, IUT de Nantes
+</footer>
+
+<script>
+  /* ── Défilement doux pour les navigateurs qui ne supportent pas scroll-behavior ── */
+  document.querySelectorAll('a[href^="#"]').forEach(function(lien) {
+    lien.addEventListener('click', function(e) {
+      var cible = document.querySelector(this.getAttribute('href'));
+      if (!cible) return;
+      e.preventDefault();
+      var navH = document.querySelector('nav').offsetHeight;
+      var top  = cible.getBoundingClientRect().top + window.pageYOffset - navH;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+  /* ── Formulaire de contact ── */
+  function envoyerMail() {
+    var nom     = document.getElementById('nom').value.trim();
+    var email   = document.getElementById('email').value.trim();
+    var sujet   = document.getElementById('sujet').value.trim();
+    var message = document.getElementById('message').value.trim();
+    var msg     = document.getElementById('formMsg');
+
+    /* Validation */
+    if (!nom || !email || !sujet || !message) {
+      msg.style.color = '#e63329';
+      msg.textContent = '⚠️ Merci de remplir tous les champs.';
+      return;
+    }
+    if (!email.includes('@') || !email.includes('.')) {
+      msg.style.color = '#e63329';
+      msg.textContent = '⚠️ L\'adresse email ne semble pas valide.';
+      return;
+    }
+
+    /* Ouverture du client mail */
+    var corps = 'Bonjour Gabin,\n\nJe m\'appelle ' + nom + ' (' + email + ').\n\n' + message;
+    var lien  = 'mailto:gabinredureau@gmail.com'
+              + '?subject=' + encodeURIComponent(sujet)
+              + '&body='    + encodeURIComponent(corps);
+
+    window.location.href = lien;
+
+    msg.style.color = '#4caf50';
+    msg.textContent = '✅ Ton client mail va s\'ouvrir pour envoyer le message !';
+  }
+</script>
+
+</body>
+</html>
