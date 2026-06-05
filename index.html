@@ -236,7 +236,11 @@
        SECTIONS COMMUNES
     ══════════════════════════════════════ */
     .section {
+      min-height: 100vh;
       padding: 5rem 4rem 6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .section-inner { max-width: 960px; margin: 0 auto; }
@@ -694,7 +698,7 @@
       .nav-links { gap: 1.2rem; }
       .nav-links a { font-size: .75rem; }
 
-      .section { padding: 4rem 1.5rem 5rem; }
+      .section { padding: 4rem 1.5rem 5rem; min-height: 100vh; }
       .sep { margin: 0 1.5rem; }
       #hero { padding: var(--nav-h) 1.5rem 4rem; }
       .hero-scroll { left: 1.5rem; }
@@ -1093,7 +1097,7 @@
       var target = document.querySelector(this.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      var offset = document.querySelector('nav').offsetHeight - 15;
+      var offset = document.querySelector('nav').offsetHeight;
       var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
       window.scrollTo({ top: top, behavior: 'smooth' });
     });
