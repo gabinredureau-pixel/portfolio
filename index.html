@@ -7,16 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet" />
   <style>
-    /* ══════════════════════════════════════
-       VARIABLES & RESET
-    ══════════════════════════════════════ */
     :root {
       --bg:      #0b0c0e;
       --surface: #13141a;
       --card:    #1a1b23;
       --border:  #252630;
       --accent:  #e63329;
-      --accent2: #ff6b35;
       --text:    #e8e6e1;
       --muted:   #6b6d7a;
       --nav-h:   64px;
@@ -39,16 +35,11 @@
 
     ::selection { background: var(--accent); color: #fff; }
 
-    /* ══════════════════════════════════════
-       SCROLLBAR
-    ══════════════════════════════════════ */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
-    /* ══════════════════════════════════════
-       NAV
-    ══════════════════════════════════════ */
+    /* ── NAV ── */
     nav {
       position: fixed;
       inset: 0 0 auto 0;
@@ -72,14 +63,9 @@
     }
     .nav-logo em { color: var(--accent); font-style: normal; }
 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 2.5rem;
-    }
+    .nav-links { list-style: none; display: flex; gap: 2.5rem; }
     .nav-links a {
       font-size: .85rem;
-      font-weight: 400;
       color: var(--muted);
       text-decoration: none;
       letter-spacing: .06em;
@@ -98,20 +84,17 @@
     .nav-links a:hover { color: var(--text); }
     .nav-links a:hover::after { right: 0; }
 
-    /* ══════════════════════════════════════
-       HERO
-    ══════════════════════════════════════ */
+    /* ── HERO (seule section pleine page centrée) ── */
     #hero {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: var(--nav-h) 4rem 4rem;
+      padding: calc(var(--nav-h) + 2rem) 4rem 4rem;
       position: relative;
       overflow: hidden;
     }
 
-    /* grille de points en background */
     #hero::before {
       content: '';
       position: absolute;
@@ -122,7 +105,6 @@
       pointer-events: none;
     }
 
-    /* cercle lumineux rouge en haut à droite */
     #hero::after {
       content: '';
       position: absolute;
@@ -201,7 +183,6 @@
       padding: .8rem 2rem;
       border: 1px solid var(--border);
       color: var(--muted);
-      font-weight: 400;
       font-size: .92rem;
       border-radius: 4px;
       text-decoration: none;
@@ -222,28 +203,19 @@
       text-transform: uppercase;
       animation: fadeUp .6s .6s ease both;
     }
-    .hero-scroll .line {
-      width: 40px; height: 1px;
-      background: var(--muted);
-    }
+    .hero-scroll .line { width: 40px; height: 1px; background: var(--muted); }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ══════════════════════════════════════
-       SECTIONS COMMUNES
-    ══════════════════════════════════════ */
+    /* ── SECTIONS : padding simple, pas de centrage vertical ── */
     .section {
-      min-height: 100vh;
-      padding: 5rem 4rem 6rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      padding: calc(var(--nav-h) + 4rem) 4rem 6rem;
     }
 
-    .section-inner { max-width: 960px; margin: 0 auto; }
+    .section-inner { max-width: 960px; margin: 0 auto; width: 100%; }
 
     .section-label {
       font-family: 'Space Mono', monospace;
@@ -262,16 +234,9 @@
       margin-bottom: 3rem;
     }
 
-    /* séparateur horizontal */
-    .sep {
-      height: 1px;
-      background: var(--border);
-      margin: 0 4rem;
-    }
+    .sep { height: 1px; background: var(--border); margin: 0 4rem; }
 
-    /* ══════════════════════════════════════
-       À PROPOS
-    ══════════════════════════════════════ */
+    /* ── À PROPOS ── */
     #about { background: var(--surface); }
 
     .about-grid {
@@ -294,7 +259,6 @@
       overflow: hidden;
       position: relative;
     }
-    /* cadre rouge décoratif décalé */
     .about-photo::after {
       content: '';
       position: absolute;
@@ -304,39 +268,13 @@
       pointer-events: none;
       z-index: -1;
     }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
 
-    .about-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .about-text h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 1rem; }
+    .about-text p { color: #9a9baa; font-size: .97rem; line-height: 1.8; margin-bottom: 1rem; }
 
-    .about-text h3 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .about-text p {
-      color: #9a9baa;
-      font-size: .97rem;
-      line-height: 1.8;
-      margin-bottom: 1rem;
-    }
-
-    .about-info {
-      margin-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: .6rem;
-    }
-
-    .about-info-item {
-      display: flex;
-      gap: 1rem;
-      font-size: .9rem;
-    }
-
+    .about-info { margin-top: 2rem; display: flex; flex-direction: column; gap: .6rem; }
+    .about-info-item { display: flex; gap: 1rem; font-size: .9rem; }
     .about-info-item .key {
       font-family: 'Space Mono', monospace;
       font-size: .78rem;
@@ -344,12 +282,9 @@
       min-width: 70px;
       padding-top: .1rem;
     }
-
     .about-info-item .val { color: var(--muted); }
 
-    /* ══════════════════════════════════════
-       COMPÉTENCES
-    ══════════════════════════════════════ */
+    /* ── COMPÉTENCES ── */
     #skills { background: var(--bg); }
 
     .skills-cats {
@@ -376,11 +311,7 @@
       margin-bottom: 1.2rem;
     }
 
-    .skills-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .5rem;
-    }
+    .skills-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
 
     .skill-chip {
       font-size: .82rem;
@@ -393,9 +324,7 @@
     }
     .skill-chip:hover { border-color: var(--accent); color: var(--text); }
 
-    /* ══════════════════════════════════════
-       POINTS FORTS
-    ══════════════════════════════════════ */
+    /* ── POINTS FORTS ── */
     #strengths { background: var(--surface); }
 
     .strengths-grid {
@@ -414,8 +343,6 @@
       transition: transform .2s, border-color .2s;
     }
     .strength-card:hover { transform: translateY(-4px); border-color: var(--accent); }
-
-    /* trait rouge en haut de la carte */
     .strength-card::before {
       content: '';
       position: absolute;
@@ -427,31 +354,14 @@
     .strength-card:hover::before { right: 0; }
 
     .strength-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .strength-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .strength-card p { font-size: .87rem; color: var(--muted); line-height: 1.6; }
 
-    .strength-card h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: .5rem;
-    }
-
-    .strength-card p {
-      font-size: .87rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* ══════════════════════════════════════
-       EXPÉRIENCES & FORMATIONS — timeline
-    ══════════════════════════════════════ */
+    /* ── TIMELINE ── */
     #experience { background: var(--bg); }
     #formation  { background: var(--surface); }
 
-    .timeline {
-      position: relative;
-      padding-left: 2rem;
-    }
-
-    /* ligne verticale */
+    .timeline { position: relative; padding-left: 2rem; }
     .timeline::before {
       content: '';
       position: absolute;
@@ -460,12 +370,7 @@
       background: var(--border);
     }
 
-    .tl-item {
-      position: relative;
-      padding: 0 0 2.6rem 2rem;
-    }
-
-    /* point sur la ligne */
+    .tl-item { position: relative; padding: 0 0 2.6rem 2rem; }
     .tl-item::before {
       content: '';
       position: absolute;
@@ -483,36 +388,14 @@
       letter-spacing: .1em;
       margin-bottom: .35rem;
     }
+    .tl-title { font-size: 1.05rem; font-weight: 700; line-height: 1.3; margin-bottom: .3rem; }
+    .tl-sub { font-size: .87rem; color: var(--muted); margin-bottom: .5rem; }
+    .tl-desc { font-size: .88rem; color: #7a7b8a; line-height: 1.65; }
 
-    .tl-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: .3rem;
-    }
-
-    .tl-sub {
-      font-size: .87rem;
-      color: var(--muted);
-      margin-bottom: .5rem;
-    }
-
-    .tl-desc {
-      font-size: .88rem;
-      color: #7a7b8a;
-      line-height: 1.65;
-    }
-
-    /* ══════════════════════════════════════
-       DIPLÔMES — liste compacte
-    ══════════════════════════════════════ */
+    /* ── DIPLÔMES ── */
     #diplomas { background: var(--bg); }
 
-    .diplomas-list {
-      display: flex;
-      flex-direction: column;
-      gap: .8rem;
-    }
+    .diplomas-list { display: flex; flex-direction: column; gap: .8rem; }
 
     .diploma-row {
       display: grid;
@@ -526,30 +409,18 @@
       transition: border-color .2s;
     }
     .diploma-row:hover { border-color: var(--accent); }
-
     .diploma-year {
       font-family: 'Space Mono', monospace;
       font-size: .72rem;
       color: var(--accent);
       padding-top: .15rem;
     }
+    .diploma-name { font-size: .92rem; color: var(--text); line-height: 1.4; }
 
-    .diploma-name {
-      font-size: .92rem;
-      color: var(--text);
-      line-height: 1.4;
-    }
-
-    /* ══════════════════════════════════════
-       LOISIRS
-    ══════════════════════════════════════ */
+    /* ── LOISIRS ── */
     #hobbies { background: var(--surface); }
 
-    .hobbies-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
+    .hobbies-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
 
     .hobby-pill {
       display: flex;
@@ -565,9 +436,7 @@
     .hobby-pill:hover { border-color: var(--accent); transform: scale(1.03); }
     .hobby-pill .icon { font-size: 1.2rem; }
 
-    /* ══════════════════════════════════════
-       CONTACT
-    ══════════════════════════════════════ */
+    /* ── CONTACT ── */
     #contact { background: var(--bg); }
 
     .contact-wrap {
@@ -577,29 +446,11 @@
       align-items: start;
     }
 
-    .contact-left h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .contact-left p {
-      font-size: .93rem;
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 2rem;
-    }
+    .contact-left h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; }
+    .contact-left p { font-size: .93rem; color: var(--muted); line-height: 1.75; margin-bottom: 2rem; }
 
     .contact-details { display: flex; flex-direction: column; gap: .9rem; }
-
-    .contact-detail {
-      display: flex;
-      align-items: center;
-      gap: .9rem;
-      font-size: .9rem;
-      color: var(--muted);
-    }
-
+    .contact-detail { display: flex; align-items: center; gap: .9rem; font-size: .9rem; color: var(--muted); }
     .contact-detail .icon {
       width: 38px; height: 38px;
       background: var(--card);
@@ -637,7 +488,6 @@
       transition: border-color .2s;
     }
     input:focus, textarea:focus { border-color: var(--accent); }
-
     textarea { resize: vertical; min-height: 130px; }
 
     #sendBtn {
@@ -656,16 +506,9 @@
     }
     #sendBtn:hover { background: #c8221a; transform: translateY(-2px); }
 
-    #formMsg {
-      margin-top: .9rem;
-      font-size: .87rem;
-      text-align: center;
-      min-height: 1.1rem;
-    }
+    #formMsg { margin-top: .9rem; font-size: .87rem; text-align: center; min-height: 1.1rem; }
 
-    /* ══════════════════════════════════════
-       FOOTER
-    ══════════════════════════════════════ */
+    /* ── FOOTER ── */
     footer {
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -677,54 +520,170 @@
       letter-spacing: .06em;
     }
 
-    /* ══════════════════════════════════════
-       ANIMATIONS AU SCROLL
-    ══════════════════════════════════════ */
+    /* ── ANIMATIONS ── */
     .reveal {
       opacity: 0;
       transform: translateY(30px);
       transition: opacity .55s ease, transform .55s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── PROJETS ── */
+    #projects { background: var(--bg); }
+
+    .projects-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
     }
 
-    /* ══════════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════════ */
+    .tab-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: .65rem 1.4rem;
+      cursor: pointer;
+      transition: color .2s, border-color .2s;
+      margin-bottom: -1px;
+    }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-btn:hover { color: var(--text); }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform .2s, border-color .2s;
+    }
+    .project-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+
+    .project-card-top {
+      background: var(--surface);
+      padding: 1.8rem 1.8rem 1.4rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card-top::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 100%;
+      height: 2px;
+      background: var(--accent);
+      transition: right .35s ease;
+    }
+    .project-card:hover .project-card-top::before { right: 0; }
+
+    .project-icon { font-size: 2rem; margin-bottom: .8rem; }
+
+    .project-card-top h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: .6rem;
+    }
+
+    .project-status {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .2rem .6rem;
+      border-radius: 2px;
+    }
+    .project-status.wip  { background: rgba(230,51,41,.15); color: var(--accent); border: 1px solid rgba(230,51,41,.3); }
+    .project-status.soon { background: rgba(107,109,122,.12); color: var(--muted); border: 1px solid var(--border); }
+
+    .project-card-body { padding: 1.4rem 1.8rem 1.8rem; }
+
+    .project-desc {
+      font-size: .9rem;
+      color: #9a9baa;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-features {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      margin-bottom: 1.2rem;
+    }
+    .project-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      font-size: .86rem;
+      color: #7a7b8a;
+      line-height: 1.5;
+    }
+    .project-feature::before { content: '→'; color: var(--accent); flex-shrink: 0; }
+
+    .project-techs { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tech-chip {
+      font-family: 'Space Mono', monospace;
+      font-size: .68rem;
+      padding: .25rem .6rem;
+      border-radius: 2px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .empty-card {
+      background: var(--card);
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+    }
+    .empty-icon { font-size: 2.5rem; opacity: .35; margin-bottom: 1rem; }
+    .empty-card p { font-size: .9rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── RESPONSIVE ── */
     @media (max-width: 800px) {
       nav { padding: 0 1.5rem; }
       .nav-links { gap: 1.2rem; }
       .nav-links a { font-size: .75rem; }
-
-      .section { padding: 4rem 1.5rem 5rem; min-height: 100vh; }
+      .section { padding: calc(var(--nav-h) + 3rem) 1.5rem 5rem; }
       .sep { margin: 0 1.5rem; }
-      #hero { padding: var(--nav-h) 1.5rem 4rem; }
+      #hero { padding: calc(var(--nav-h) + 2rem) 1.5rem 4rem; }
       .hero-scroll { left: 1.5rem; }
-
       .about-grid { grid-template-columns: 1fr; }
       .about-photo { max-width: 280px; aspect-ratio: 1; }
-
       .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
     }
 
     @media (max-width: 500px) {
       .nav-links { display: none; }
-      .hero-name { white-space: normal; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════════
-     NAV
-══════════════════════ -->
 <nav>
   <a href="#hero" class="nav-logo">gr<em>.</em>dev</a>
   <ul class="nav-links">
     <li><a href="#about">À propos</a></li>
     <li><a href="#skills">Compétences</a></li>
+    <li><a href="#projects">Projets</a></li>
     <li><a href="#experience">Expériences</a></li>
     <li><a href="#formation">Formation</a></li>
     <li><a href="#diplomas">Diplômes</a></li>
@@ -732,9 +691,6 @@
   </ul>
 </nav>
 
-<!-- ══════════════════════
-     HERO
-══════════════════════ -->
 <section id="hero">
   <div class="hero-inner">
     <span class="hero-tag">Étudiant BUT Informatique · IUT Nantes</span>
@@ -755,9 +711,6 @@
   </div>
 </section>
 
-<!-- ══════════════════════
-     À PROPOS
-══════════════════════ -->
 <section id="about" class="section">
   <div class="section-inner">
     <p class="section-label reveal">// À propos</p>
@@ -765,7 +718,6 @@
     <div class="about-grid">
       <div class="about-photo reveal">
         <img src="IMG_20260605_140231.jpg" alt="Gabin Redureau" />
-        
       </div>
       <div class="about-text reveal">
         <h3>Bonjour, je m'appelle Gabin.</h3>
@@ -802,16 +754,11 @@
 
 <div class="sep"></div>
 
-<!-- ══════════════════════
-     COMPÉTENCES
-══════════════════════ -->
 <section id="skills" class="section">
   <div class="section-inner">
     <p class="section-label reveal">// Compétences</p>
     <h2 class="section-title reveal">Ce que je maîtrise</h2>
-
     <div class="skills-cats">
-
       <div class="skills-cat reveal">
         <p class="skills-cat-title">Langages &amp; Web</p>
         <div class="skills-tags">
@@ -823,7 +770,6 @@
           <span class="skill-chip">C</span>
         </div>
       </div>
-
       <div class="skills-cat reveal">
         <p class="skills-cat-title">Outils &amp; Logiciels</p>
         <div class="skills-tags">
@@ -833,7 +779,6 @@
           <span class="skill-chip">Sweet Home 3D</span>
         </div>
       </div>
-
       <div class="skills-cat reveal">
         <p class="skills-cat-title">Systèmes</p>
         <div class="skills-tags">
@@ -842,7 +787,6 @@
           <span class="skill-chip">macOS</span>
         </div>
       </div>
-
       <div class="skills-cat reveal">
         <p class="skills-cat-title">Autres</p>
         <div class="skills-tags">
@@ -850,7 +794,6 @@
           <span class="skill-chip">Impression 3D</span>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -858,13 +801,79 @@
 <div class="sep"></div>
 
 <!-- ══════════════════════
-     POINTS FORTS
+     PROJETS
 ══════════════════════ -->
+<section id="projects" class="section">
+  <div class="section-inner">
+    <p class="section-label reveal">// Projets</p>
+    <h2 class="section-title reveal">Ce que je construis</h2>
+
+    <!-- Onglets -->
+    <div class="projects-tabs reveal">
+      <button class="tab-btn active" onclick="switchTab('perso')">Projets personnels</button>
+      <button class="tab-btn" onclick="switchTab('pro')">Projets professionnels</button>
+    </div>
+
+    <!-- Onglet perso -->
+    <div id="tab-perso" class="tab-content active">
+      <div class="projects-grid">
+
+        <div class="project-card reveal">
+          <div class="project-card-top">
+            <div class="project-icon">🤖</div>
+            <h3>Jarvis</h3>
+            <span class="project-status wip">En cours</span>
+          </div>
+          <div class="project-card-body">
+            <p class="project-desc">
+              Un assistant vocal personnel inspiré de Jarvis dans Iron Man, qui tourne entièrement sur mon PC sans connexion internet. Il reconnaît ma voix, comprend mes commandes et contrôle mon environnement numérique en temps réel.
+            </p>
+            <div class="project-features">
+              <div class="project-feature">Reconnaissance vocale hors-ligne avec Faster-Whisper</div>
+              <div class="project-feature">Contrôle des apps sur mon PC</div>
+              <div class="project-feature">Minuteurs, rappels vocaux et gestion du volume par application</div>
+              <div class="project-feature">Mode jeu : Jarvis n'écoute que si on dit son nom en premier</div>
+              <div class="project-feature">IA locale avec Mistral, LLaMA 3 et Dolphin via Ollama — données 100% sur mon PC</div>
+              <div class="project-feature">Alertes Twitch automatiques quand un streamer passe en live</div>
+              <div class="project-feature">Envoi de messages Discord à la voix</div>
+            </div>
+            <div class="project-techs">
+              <span class="tech-chip">Python</span>
+              <span class="tech-chip">Faster-Whisper</span>
+              <span class="tech-chip">Silero VAD</span>
+              <span class="tech-chip">CUDA</span>
+              <span class="tech-chip">Ollama</span>
+              <span class="tech-chip">LLaMA 3</span>
+              <span class="tech-chip">Mistral</span>
+              <span class="tech-chip">Discord.py</span>
+              <span class="tech-chip">Twitch API</span>
+              <span class="tech-chip">pycaw</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Onglet pro -->
+    <div id="tab-pro" class="tab-content">
+      <div class="projects-grid">
+        <div class="empty-card reveal">
+          <div class="empty-icon">🚧</div>
+          <p>Les projets professionnels arrivent bientôt.<br />Cette section sera mise à jour au fil de mon parcours à l'IUT.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="sep"></div>
+
 <section id="strengths" class="section">
   <div class="section-inner">
     <p class="section-label reveal">// Soft skills</p>
     <h2 class="section-title reveal">Mes points forts</h2>
-
     <div class="strengths-grid">
       <div class="strength-card reveal">
         <div class="strength-icon">🤝</div>
@@ -892,14 +901,10 @@
 
 <div class="sep"></div>
 
-<!-- ══════════════════════
-     EXPÉRIENCES
-══════════════════════ -->
 <section id="experience" class="section">
   <div class="section-inner">
     <p class="section-label reveal">// Expériences</p>
     <h2 class="section-title reveal">Ce que j'ai vécu</h2>
-
     <div class="timeline">
       <div class="tl-item reveal">
         <p class="tl-year">2023</p>
@@ -925,14 +930,10 @@
 
 <div class="sep"></div>
 
-<!-- ══════════════════════
-     FORMATION
-══════════════════════ -->
 <section id="formation" class="section">
   <div class="section-inner">
     <p class="section-label reveal">// Formation</p>
     <h2 class="section-title reveal">Mon parcours scolaire</h2>
-
     <div class="timeline">
       <div class="tl-item reveal">
         <p class="tl-year">2025 – 2026</p>
@@ -960,52 +961,24 @@
 
 <div class="sep"></div>
 
-<!-- ══════════════════════
-     DIPLÔMES
-══════════════════════ -->
 <section id="diplomas" class="section">
   <div class="section-inner">
     <p class="section-label reveal">// Certifications</p>
     <h2 class="section-title reveal">Diplômes &amp; Certificats</h2>
-
     <div class="diplomas-list">
-      <div class="diploma-row reveal">
-        <span class="diploma-year">2025</span>
-        <span class="diploma-name">Permis de conduire B</span>
-      </div>
-      <div class="diploma-row reveal">
-        <span class="diploma-year">2025</span>
-        <span class="diploma-name">Certificat PIX — score 374</span>
-      </div>
-      <div class="diploma-row reveal">
-        <span class="diploma-year">2021</span>
-        <span class="diploma-name">Diplôme national du BREVET — mention bien</span>
-      </div>
-      <div class="diploma-row reveal">
-        <span class="diploma-year">2020</span>
-        <span class="diploma-name">Castor informatique</span>
-      </div>
-      <div class="diploma-row reveal">
-        <span class="diploma-year">2020</span>
-        <span class="diploma-name">Certificat de formation 1er secours junior</span>
-      </div>
-      <div class="diploma-row reveal">
-        <span class="diploma-year">2018</span>
-        <span class="diploma-name">Assistant Sécurité ASSEC</span>
-      </div>
-      <div class="diploma-row reveal">
-        <span class="diploma-year">2015</span>
-        <span class="diploma-name">Certificat Natation</span>
-      </div>
+      <div class="diploma-row reveal"><span class="diploma-year">2025</span><span class="diploma-name">Permis de conduire B</span></div>
+      <div class="diploma-row reveal"><span class="diploma-year">2025</span><span class="diploma-name">Certificat PIX — score 374</span></div>
+      <div class="diploma-row reveal"><span class="diploma-year">2021</span><span class="diploma-name">Diplôme national du BREVET — mention bien</span></div>
+      <div class="diploma-row reveal"><span class="diploma-year">2020</span><span class="diploma-name">Castor informatique</span></div>
+      <div class="diploma-row reveal"><span class="diploma-year">2020</span><span class="diploma-name">Certificat de formation 1er secours junior</span></div>
+      <div class="diploma-row reveal"><span class="diploma-year">2018</span><span class="diploma-name">Assistant Sécurité ASSEC</span></div>
+      <div class="diploma-row reveal"><span class="diploma-year">2015</span><span class="diploma-name">Certificat Natation</span></div>
     </div>
   </div>
 </section>
 
 <div class="sep"></div>
 
-<!-- ══════════════════════
-     LOISIRS
-══════════════════════ -->
 <section id="hobbies" class="section">
   <div class="section-inner">
     <p class="section-label reveal">// En dehors du code</p>
@@ -1024,37 +997,20 @@
 
 <div class="sep"></div>
 
-<!-- ══════════════════════
-     CONTACT
-══════════════════════ -->
 <section id="contact" class="section">
   <div class="section-inner">
     <p class="section-label reveal">// Contact</p>
     <h2 class="section-title reveal">Parlons-nous</h2>
-
     <div class="contact-wrap">
       <div class="contact-left reveal">
         <h3>Une question ? Un projet ?</h3>
-        <p>
-          Tu veux me proposer un stage, un projet ou juste échanger sur l'informatique ?
-          N'hésite pas à remplir le formulaire, je te réponds rapidement.
-        </p>
+        <p>Tu veux me proposer un stage, un projet ou juste échanger sur l'informatique ? N'hésite pas à remplir le formulaire, je te réponds rapidement.</p>
         <div class="contact-details">
-          <div class="contact-detail">
-            <div class="icon">📍</div>
-            <span>Ancenis, 44150</span>
-          </div>
-          <div class="contact-detail">
-            <div class="icon">📞</div>
-            <span>07 49 56 27 26</span>
-          </div>
-          <div class="contact-detail">
-            <div class="icon">✉️</div>
-            <span>gabinredureau@gmail.com</span>
-          </div>
+          <div class="contact-detail"><div class="icon">📍</div><span>Ancenis, 44150</span></div>
+          <div class="contact-detail"><div class="icon">📞</div><span>07 49 56 27 26</span></div>
+          <div class="contact-detail"><div class="icon">✉️</div><span>gabinredureau@gmail.com</span></div>
         </div>
       </div>
-
       <div class="reveal">
         <div class="form-group">
           <label>Nom</label>
@@ -1079,27 +1035,24 @@
   </div>
 </section>
 
-<!-- ══════════════════════
-     FOOTER
-══════════════════════ -->
 <footer>
   © 2026 GABIN REDUREAU — Portfolio BUT Informatique · IUT de Nantes
 </footer>
 
 <script>
-  /* ── Défilement doux pour tous les liens d'ancre ── */
+  /* Défilement doux — l'offset est exactement la hauteur de la nav */
   document.querySelectorAll('a[href^="#"]').forEach(function(link) {
     link.addEventListener('click', function(e) {
       var target = document.querySelector(this.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
       var offset = document.querySelector('nav').offsetHeight - 25;
-      var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      var top  = target.getBoundingClientRect().top + window.pageYOffset - navH;
       window.scrollTo({ top: top, behavior: 'smooth' });
     });
   });
 
-  /* ── Animation au scroll (IntersectionObserver) ── */
+  /* Animations au scroll */
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
@@ -1113,7 +1066,15 @@
     observer.observe(el);
   });
 
-  /* ── Formulaire de contact ── */
+  /* Onglets projets */
+  function switchTab(name) {
+    document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(el) { el.classList.remove('active'); });
+    document.getElementById('tab-' + name).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  /* Formulaire */
   function envoyerMail() {
     var nom     = document.getElementById('nom').value.trim();
     var email   = document.getElementById('email').value.trim();
@@ -1128,19 +1089,18 @@
     }
     if (!email.includes('@') || !email.includes('.')) {
       msg.style.color = '#e63329';
-      msg.textContent = '⚠️ L\'adresse email ne semble pas valide.';
+      msg.textContent = "⚠️ L'adresse email ne semble pas valide.";
       return;
     }
 
-    var corps = 'Bonjour Gabin,\n\nJe m\'appelle ' + nom + ' (' + email + ').\n\n' + message;
+    var corps = "Bonjour Gabin,\n\nJe m'appelle " + nom + ' (' + email + ').\n\n' + message;
     var lien  = 'mailto:gabinredureau@gmail.com'
               + '?subject=' + encodeURIComponent(sujet)
               + '&body='    + encodeURIComponent(corps);
 
     window.location.href = lien;
-
     msg.style.color = '#4caf50';
-    msg.textContent = '✅ Ton client mail va s\'ouvrir pour envoyer le message !';
+    msg.textContent = "✅ Ton client mail va s'ouvrir pour envoyer le message !";
   }
 </script>
 
