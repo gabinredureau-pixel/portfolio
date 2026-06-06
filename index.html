@@ -726,8 +726,8 @@
           Passionné par l'informatique depuis plusieurs années, j'ai naturellement choisi de m'orienter vers les études qui me permettraient d'en faire mon métier.
         </p>
         <p>
-          J'aime autant comprendre comment les choses fonctionnent sous le capot — systèmes d'exploitation, réseaux, sécurité — que créer des interfaces et des programmes concrets.
-          En dehors du code, tu peux me trouver sur les pistes de ski, en kayak, ou à jouer de la flûte.
+          J'aime autant comprendre comment les choses fonctionnent — systèmes d'exploitation, réseaux, sécurité — que créer des interfaces et des programmes concrets.
+          En dehors du code, j'aime me plonger dans mes loisire, qui peuve aller du sport au sortie entre pote en pasent par le geaming.
         </p>
         <div class="about-info">
           <div class="about-info-item">
@@ -1046,7 +1046,7 @@
       var target = document.querySelector(this.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      var navH = document.querySelector('nav').offsetHeight - 25;
+      var navH = document.querySelector('nav').offsetHeight;
       var top  = target.getBoundingClientRect().top + window.pageYOffset - navH;
       window.scrollTo({ top: top, behavior: 'smooth' });
     });
