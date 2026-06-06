@@ -212,7 +212,7 @@
 
     /* ── SECTIONS : padding simple, pas de centrage vertical ── */
     .section {
-      padding: calc(var(--nav-h) + 6rem) 4rem 8rem;
+      padding: 5rem 4rem 5rem;
     }
 
     .section-inner { max-width: 960px; margin: 0 auto; width: 100%; }
@@ -1038,7 +1038,7 @@
       if (!target) return;
       e.preventDefault();
       var navH = document.querySelector('nav').offsetHeight;
-      var top  = target.getBoundingClientRect().top + window.pageYOffset - navH + 200;
+      var top  = target.getBoundingClientRect().top + window.pageYOffset - navH + 100;
       window.scrollTo({ top: top, behavior: 'smooth' });
     });
   });
