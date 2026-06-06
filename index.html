@@ -726,8 +726,8 @@
           Passionné par l'informatique depuis plusieurs années, j'ai naturellement choisi de m'orienter vers les études qui me permettraient d'en faire mon métier.
         </p>
         <p>
-          J'aime autant comprendre comment les choses fonctionnent — systèmes d'exploitation, réseaux, sécurité — que créer des interfaces et des programmes concrets.
-          En dehors du code, j'aime me plonger dans mes loisire, qui peuve aller du sport au sortie entre pote en pasent par le geaming.
+          J'aime autant comprendre comment les choses fonctionnent sous le capot — systèmes d'exploitation, réseaux, sécurité — que créer des interfaces et des programmes concrets.
+          En dehors du code, tu peux me trouver sur les pistes de ski, en kayak, ou à jouer de la flûte.
         </p>
         <div class="about-info">
           <div class="about-info-item">
@@ -800,24 +800,18 @@
 
 <div class="sep"></div>
 
-<!-- ══════════════════════
-     PROJETS
-══════════════════════ -->
 <section id="projects" class="section">
   <div class="section-inner">
     <p class="section-label reveal">// Projets</p>
     <h2 class="section-title reveal">Ce que je construis</h2>
 
-    <!-- Onglets -->
     <div class="projects-tabs reveal">
-      <button class="tab-btn active" onclick="switchTab('perso')">Projets personnels</button>
-      <button class="tab-btn" onclick="switchTab('pro')">Projets professionnels</button>
+      <button class="tab-btn active" onclick="switchTab(event,'perso')">Projets personnels</button>
+      <button class="tab-btn" onclick="switchTab(event,'pro')">Projets professionnels</button>
     </div>
 
-    <!-- Onglet perso -->
     <div id="tab-perso" class="tab-content active">
       <div class="projects-grid">
-
         <div class="project-card reveal">
           <div class="project-card-top">
             <div class="project-icon">🤖</div>
@@ -851,11 +845,9 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
-    <!-- Onglet pro -->
     <div id="tab-pro" class="tab-content">
       <div class="projects-grid">
         <div class="empty-card reveal">
@@ -1040,19 +1032,17 @@
 </footer>
 
 <script>
-  /* Défilement doux — l'offset est exactement la hauteur de la nav */
   document.querySelectorAll('a[href^="#"]').forEach(function(link) {
     link.addEventListener('click', function(e) {
       var target = document.querySelector(this.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      var navH = document.querySelector('nav').offsetHeight - 25;
+      var navH = document.querySelector('nav').offsetHeight;
       var top  = target.getBoundingClientRect().top + window.pageYOffset - navH;
       window.scrollTo({ top: top, behavior: 'smooth' });
     });
   });
 
-  /* Animations au scroll */
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
@@ -1066,15 +1056,14 @@
     observer.observe(el);
   });
 
-  /* Onglets projets */
-  function switchTab(name) {
+  /* Onglets projets — seule correction apportée */
+  function switchTab(e, name) {
     document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
     document.querySelectorAll('.tab-btn').forEach(function(el) { el.classList.remove('active'); });
     document.getElementById('tab-' + name).classList.add('active');
-    event.currentTarget.classList.add('active');
+    e.currentTarget.classList.add('active');
   }
 
-  /* Formulaire */
   function envoyerMail() {
     var nom     = document.getElementById('nom').value.trim();
     var email   = document.getElementById('email').value.trim();
