@@ -728,7 +728,7 @@
           Passionné par l'informatique depuis plusieurs années, j'ai naturellement choisi de m'orienter vers les études qui me permettraient d'en faire mon métier.
         </p>
         <p>
-          J'aime autant comprendre comment les choses fonctionnent — systèmes d'exploitation, réseaux, sécurité — que créer des interfaces et des programmes concrets.
+          J'aime autant comprendre comment les choses fonctionnent sous le capot — systèmes d'exploitation, réseaux, sécurité — que créer des interfaces et des programmes concrets.
           En dehors du code, tu peux me trouver sur les pistes de ski, en kayak, ou à jouer de la flûte.
         </p>
         <div class="about-info">
@@ -1005,26 +1005,25 @@
           <div class="contact-detail"><div class="icon">✉️</div><span>gabinredureau@gmail.com</span></div>
         </div>
       </div>
-      <div class="reveal">
+      <form class="reveal" action="https://formspree.io/f/xzdqebkd" method="POST">
         <div class="form-group">
           <label>Nom</label>
-          <input type="text" id="nom" placeholder="Jean Dupont" />
+          <input type="text" name="nom" placeholder="Jean Dupont" required />
         </div>
         <div class="form-group">
           <label>Email</label>
-          <input type="email" id="email" placeholder="jean@exemple.com" />
+          <input type="email" name="email" placeholder="jean@exemple.com" required />
         </div>
         <div class="form-group">
           <label>Sujet</label>
-          <input type="text" id="sujet" placeholder="Proposition de stage..." />
+          <input type="text" name="sujet" placeholder="Proposition de stage..." required />
         </div>
         <div class="form-group">
           <label>Message</label>
-          <textarea id="message" placeholder="Bonjour Gabin..."></textarea>
+          <textarea name="message" placeholder="Bonjour Gabin..." required></textarea>
         </div>
-        <button id="sendBtn" onclick="envoyerMail()">Envoyer le message →</button>
-        <p id="formMsg"></p>
-      </div>
+        <button type="submit" id="sendBtn">Envoyer le message →</button>
+      </form>
     </div>
   </div>
 </section>
@@ -1040,7 +1039,7 @@
       if (!target) return;
       e.preventDefault();
       var navH = document.querySelector('nav').offsetHeight;
-      var top  = target.getBoundingClientRect().top + window.pageYOffset - navH + 50;
+      var top  = target.getBoundingClientRect().top + window.pageYOffset - navH + 100;
       window.scrollTo({ top: top, behavior: 'smooth' });
     });
   });
@@ -1066,33 +1065,6 @@
     e.currentTarget.classList.add('active');
   }
 
-  function envoyerMail() {
-    var nom     = document.getElementById('nom').value.trim();
-    var email   = document.getElementById('email').value.trim();
-    var sujet   = document.getElementById('sujet').value.trim();
-    var message = document.getElementById('message').value.trim();
-    var msg     = document.getElementById('formMsg');
-
-    if (!nom || !email || !sujet || !message) {
-      msg.style.color = '#e63329';
-      msg.textContent = '⚠️ Merci de remplir tous les champs.';
-      return;
-    }
-    if (!email.includes('@') || !email.includes('.')) {
-      msg.style.color = '#e63329';
-      msg.textContent = "⚠️ L'adresse email ne semble pas valide.";
-      return;
-    }
-
-    var corps = "Bonjour Gabin,\n\nJe m'appelle " + nom + ' (' + email + ').\n\n' + message;
-    var lien  = 'mailto:gabinredureau@gmail.com'
-              + '?subject=' + encodeURIComponent(sujet)
-              + '&body='    + encodeURIComponent(corps);
-
-    window.location.href = lien;
-    msg.style.color = '#4caf50';
-    msg.textContent = "✅ Ton client mail va s'ouvrir pour envoyer le message !";
-  }
 </script>
 
 </body>
