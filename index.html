@@ -1039,7 +1039,7 @@
       if (!target) return;
       e.preventDefault();
       var navH = document.querySelector('nav').offsetHeight;
-      var top  = target.getBoundingClientRect().top + window.pageYOffset - navH + 50;
+      var top  = target.getBoundingClientRect().top + window.pageYOffset - navH + 35;
       window.scrollTo({ top: top, behavior: 'smooth' });
     });
   });
