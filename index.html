@@ -362,7 +362,7 @@
     .section { padding: 5rem 4rem; }
 
     /* Sections fullscreen : occupent exactement toute la fenêtre,
-       padding de la nav compensé, contenu centré verticalement */
+       contenu centré verticalement, légèrement remonté */
     #about,
     #skills,
     #projects,
@@ -374,10 +374,8 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      /* On retire le padding vertical du .section et on le remplace
-         par un padding qui tient compte de la nav en haut */
-      padding-top: calc(var(--nav-h) + 3rem);
-      padding-bottom: 3rem;
+      padding-top: calc(var(--nav-h) + 1rem);
+      padding-bottom: 1rem;
     }
 
     /* Sections normales (hauteur automatique selon contenu) */
@@ -1331,16 +1329,33 @@
 </footer>
 
 <script>
-  /* ── SMOOTH SCROLL ── géré par scroll-behavior: smooth en CSS + scroll-padding-top */
-  /* On intercepte quand même les clics pour corriger le décalage nav sur anciens navigateurs */
+  /* ── SMOOTH SCROLL avec easing doux (easeInOutCubic) ── */
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function smoothScrollTo(targetY, duration) {
+    var startY = window.pageYOffset;
+    var distance = targetY - startY;
+    var startTime = null;
+    function step(currentTime) {
+      if (!startTime) startTime = currentTime;
+      var elapsed = currentTime - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      window.scrollTo(0, startY + distance * easeInOutCubic(progress));
+      if (elapsed < duration) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(function(link) {
     link.addEventListener('click', function(e) {
       var target = document.querySelector(this.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
       var navH = document.querySelector('nav').offsetHeight;
-      var top = target.getBoundingClientRect().top + window.pageYOffset - navH;
-      window.scrollTo({ top: top, behavior: 'smooth' });
+      var targetY = target.getBoundingClientRect().top + window.pageYOffset - navH;
+      smoothScrollTo(targetY, 900);
     });
   });
 
