@@ -359,10 +359,9 @@
 
     /* ── SECTIONS ── */
     /* padding vertical généreux pour les sections */
-    .section { padding: 2rem 4rem 5rem 2rem; }
+    .section { padding: 5rem 4rem; }
 
-    /* Sections fullscreen : occupent exactement toute la fenêtre,
-       contenu centré verticalement, légèrement remonté */
+    /* Sections fullscreen : occupent toute la fenêtre, contenu vraiment centré */
     #about,
     #skills,
     #projects,
@@ -374,8 +373,9 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding-top: calc(1rem);
-      padding-bottom: 1rem;
+      /* Padding symétrique : la moitié de la nav compense visuellement le décalage */
+      padding-top: calc(var(--nav-h) / 2 + 2rem);
+      padding-bottom: 2rem;
     }
 
     /* Sections normales (hauteur automatique selon contenu) */
@@ -1033,7 +1033,7 @@
           </div>
           <div class="about-info-item">
             <span class="key">Langues</span>
-            <span class="val">Français (natif) · Anglais (usuel) · Espagnol (débutant)</span>
+            <span class="val">Français (natif) · Anglais (usuel) · Espagnol (débutant) · Russe (autodidacte – débutant)</span>
           </div>
         </div>
       </div>
@@ -1058,6 +1058,7 @@
           <span class="skill-chip">Go</span>
           <span class="skill-chip">SQL</span>
           <span class="skill-chip">C</span>
+          <span class="skill-chip">C++</span>
         </div>
       </div>
       <div class="skills-cat reveal">
@@ -1191,6 +1192,12 @@
     <h2 class="section-title reveal">Mes Expériences</h2>
     <div class="timeline">
       <div class="tl-item reveal">
+        <p class="tl-year">2026</p>
+        <p class="tl-title">Travail d'été – Aubret</p>
+        <p class="tl-sub">Ancenis</p>
+        <p class="tl-desc">Agent de service.</p>
+      </div>
+      <div class="tl-item reveal">
         <p class="tl-year">2023</p>
         <p class="tl-title">Stage – Arrondel, Cabinet Géomètres</p>
         <p class="tl-sub">Ancenis</p>
@@ -1221,9 +1228,14 @@
     <h2 class="section-title reveal">Mon parcours scolaire</h2>
     <div class="timeline">
       <div class="tl-item reveal">
+        <p class="tl-year">2026 – 2027</p>
+        <p class="tl-title">Lycée Livet – BTS CIEL</p>
+        <p class="tl-sub">Nantes</p>
+      </div>
+      <div class="tl-item reveal">
         <p class="tl-year">2025 – 2026</p>
         <p class="tl-title">IUT de Nantes</p>
-        <p class="tl-sub">BUT Informatique – en cours</p>
+        <p class="tl-sub">BUT Informatique</p>
       </div>
       <div class="tl-item reveal">
         <p class="tl-year">2022 – 2025</p>
@@ -1273,10 +1285,10 @@
     <h2 class="section-title reveal">Mes loisirs</h2>
     <div class="hobbies-grid">
       <div class="hobby-pill reveal"><span class="icon">⛷️</span> Ski de piste &amp; ski nordique</div>
-      <div class="hobby-pill reveal"><span class="icon">🎮</span> gaming</div>
+      <div class="hobby-pill reveal"><span class="icon">🎮</span> Gaming</div>
       <div class="hobby-pill reveal"><span class="icon">🛶</span> Canoë-Kayak</div>
-      <div class="hobby-pill reveal"><span class="icon">🏀</span> Basket</div>
-      <div class="hobby-pill reveal"><span class="icon">🎶</span> Flûte traversière</div>
+      <div class="hobby-pill reveal"><span class="icon">🏐</span> Volley</div>
+      <div class="hobby-pill reveal"><span class="icon">🏸</span> Badminton</div>
       <div class="hobby-pill reveal"><span class="icon">🏹</span> Tir à l'arc</div>
       <div class="hobby-pill reveal"><span class="icon">🧗</span> Escalade</div>
       <div class="hobby-pill reveal"><span class="icon">✈️</span> Voyager</div>
