@@ -255,7 +255,9 @@
       font-size: clamp(.8rem, 2vw, 1rem);
       color: var(--muted);
       animation: fadeUp .6s .2s ease both;
-      min-height: 1.5em;
+      /* 3 lignes réservées pour éviter que le texte en dessous bouge */
+      min-height: 4.5em;
+      line-height: 1.5;
     }
     .hero-terminal .prompt { color: var(--accent); }
     .hero-terminal .cursor {
@@ -687,7 +689,6 @@
       gap: 0;
       margin-bottom: 2.5rem;
       border-bottom: 1px solid var(--border);
-      /* FIX : suppression du overflow-x auto qui causait la scrollbar */
       overflow: visible;
     }
 
@@ -705,11 +706,40 @@
       transition: color .2s, border-color .2s;
       margin-bottom: -1px;
       white-space: nowrap;
-      /* FIX : empêche les boutons de rétrécir et provoquer un scroll */
       flex-shrink: 0;
     }
     .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
     .tab-btn:hover { color: var(--text); }
+
+    /* Select mobile — caché sur desktop */
+    .tab-select { display: none; }
+
+    @media (max-width: 600px) {
+      .projects-tabs { display: none; }
+      .tab-select {
+        display: block;
+        width: 100%;
+        margin-bottom: 2rem;
+        padding: .75rem 2.5rem .75rem 1rem;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        color: var(--text);
+        font-family: 'Space Mono', monospace;
+        font-size: .78rem;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23e63329' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 12px;
+      }
+      .tab-select:focus { border-color: var(--accent); }
+    }
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
@@ -1097,6 +1127,13 @@
     <p class="section-label reveal">// Projets</p>
     <h2 class="section-title reveal">Ce que je construis</h2>
 
+    <!-- Select mobile -->
+    <select class="tab-select" onchange="switchTabMobile(this.value)">
+      <option value="perso">Projets personnels</option>
+      <option value="pro">Projets professionnels</option>
+    </select>
+
+    <!-- Onglets desktop -->
     <div class="projects-tabs reveal">
       <button class="tab-btn active" onclick="switchTab(event,'perso')">Projets personnels</button>
       <button class="tab-btn" onclick="switchTab(event,'pro')">Projets professionnels</button>
@@ -1385,12 +1422,23 @@
     observer.observe(el);
   });
 
-  /* ── ONGLETS PROJETS ── */
+  /* ── ONGLETS PROJETS (desktop) ── */
   function switchTab(e, name) {
     document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
     document.querySelectorAll('.tab-btn').forEach(function(el) { el.classList.remove('active'); });
     document.getElementById('tab-' + name).classList.add('active');
     e.currentTarget.classList.add('active');
+  }
+
+  /* ── SELECT PROJETS (mobile) ── */
+  function switchTabMobile(name) {
+    document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
+    document.getElementById('tab-' + name).classList.add('active');
+    /* Synchroniser aussi les boutons desktop au cas où */
+    document.querySelectorAll('.tab-btn').forEach(function(btn) { btn.classList.remove('active'); });
+    var btns = document.querySelectorAll('.tab-btn');
+    if (name === 'perso' && btns[0]) btns[0].classList.add('active');
+    if (name === 'pro'   && btns[1]) btns[1].classList.add('active');
   }
 
   /* ── DARK / LIGHT MODE ── */
