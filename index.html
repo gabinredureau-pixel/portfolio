@@ -1090,7 +1090,7 @@
 </div>
 
 <!-- ════════════════════════════════════════
-     SECTION vitrine
+     SECTION HÉRO
 ════════════════════════════════════════ -->
 <section id="vitrine">
   <div class="contenu-vitrine">
@@ -1148,7 +1148,7 @@
       <div class="texte-apropos apparaitre">
         <h3>Bonjour, je m'appelle Gabin.</h3>
         <p>
-          Né en 2007 et originaire d'Ancenis (44), je suis actuellement étudiant en première année de BTS CIEL option A au Lycée Livet à Nantes, spécialité orientée vers l'électronique et les réseaux.
+          Né en 2007 et originaire d'Ancenis (44), je suis actuellement étudiant en première année de BTS CIEL option B au Lycée Livet à Nantes, spécialité orientée vers l'électronique et les réseaux.
           Passionné par l'informatique depuis plusieurs années, j'ai naturellement choisi de m'orienter vers les études qui me permettraient d'en faire mon métier — après une première année de BUT Informatique à l'IUT de Nantes qui m'a donné de solides bases en développement.
         </p>
         <p>
@@ -1619,7 +1619,7 @@
   });
 
   /* ════════════════════════════════════════
-     ANIMATION TERMINAL HÉRO
+     ANIMATION TERMINAL VITRINE
      Effet de machine à écrire : les phrases s'écrivent
      et s'effacent les unes après les autres en boucle
   ════════════════════════════════════════ */
@@ -1679,18 +1679,18 @@
   }
 
   var compteursLances = false;
-  var observateurHero = new IntersectionObserver(function(entrees) {
+  var observateurVitrine = new IntersectionObserver(function(entrees) {
     entrees.forEach(function(entree) {
       if (entree.isIntersecting && !compteursLances) {
         compteursLances = true;
         document.querySelectorAll('.stat-nombre').forEach(animerCompteur);
-        observateurHero.disconnect();
+        observateurVitrine.disconnect();
       }
     });
   }, { threshold: 0.3 });
 
   var sectionVitrine = document.getElementById('vitrine');
-  if (sectionVitrine) observateurHero.observe(sectionVitrine);
+  if (sectionVitrine) observateurVitrine.observe(sectionVitrine);
 </script>
 
 </body>
